@@ -1,0 +1,34 @@
+PROCEDURE Dot_product(v1:ARRAY_OF FLOAT, var v2:ARRAY_OF FLOAT)
+VAR
+    i,j:INTEGER;
+    sum:FLOAT;
+BEGIN
+    sum:=0;
+    FOR i FROM 0 TO v1.length STEP 1  DO
+        sum:=v1[i]*v2[i]+sum;
+    END_FOR
+    IF (sum=0) THEN
+        Write("these vectors are orthogonal");
+    ELSE
+        Write("these vectors are not orthogonal");
+    END_IF
+END
+
+ALGORITHM DotProduct
+VAR
+    N,index1,index2,i,j:INTEGER;
+    M: ARRAY_OF FLOAT[N][N];
+    v1,v2: ARRAY_OF FLOAT;
+BEGIN
+    Read(N);
+    FOR i FROM 0 TO N-1 STEP 1  DO
+        FOR j FROM 0 TO N-1 STEP 1  DO
+            Read(M[i][j]);
+        END_FOR
+    END_FOR
+    Write("choose the indexes of two vectors: ");
+    Read(index1,index2);
+    v1:=M(index1,:);
+    v2:=M(index2,:);
+    Dot_product(v1,v2);
+END
